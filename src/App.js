@@ -1,9 +1,30 @@
 import React from 'react';
+import axios from 'axios';
 
 class App extends React.Component {
+  getUserInfo(){
+    return axios.get(`https://api.github.com/users/panlinna`)
+      .then((res) => ({
+        bio: res.data
+      }))
+  }
+  constructor(){
+    super();
+    this.state={
+      info:{}
+    }
+  }
+  componentDidMount(){
+    this.getUserInfo().then((data) => {
+        console.log(data.bio)
+        this.setState({
+          info:data.bio
+        })
+    })
+  }
   render () {
     return(
-      <h1>脚手架工具</h1>
+      <div>{this.state.info.email}</div>
     )
   }
 }
