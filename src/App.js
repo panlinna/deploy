@@ -11,22 +11,29 @@ class App extends React.Component {
   constructor(){
     super();
     this.state={
-      info:{}
+      info:{},
+      wait:true
     }
   }
   componentDidMount(){
     this.getUserInfo().then((data) => {
         console.log(data.bio)
         this.setState({
-          info:data.bio
+          info:data.bio,
+          wait:false
         })
     })
   }
   render () {
     return(
       <div>
-      {this.state.info.email}
-      <img src={this.state.info.avatar_url} />
+        {
+          this.state.wait ?  <h1>loading .....</h1> :
+          <div>
+          {this.state.info.email}
+          <img src={this.state.info.avatar_url} />
+          </div>
+        }
       </div>
     )
   }
