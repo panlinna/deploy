@@ -3,15 +3,11 @@ import axios from 'axios';
 import CircularProgress from 'material-ui/CircularProgress';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
+import github from './utils/github';
+
 class App extends React.Component {
   getChildContext() {
     return {muiTheme: getMuiTheme()};
-  }
-  getUserInfo(){
-    return axios.get(`https://api.github.com/users/panlinna`)
-      .then((res) => ({
-        bio: res.data
-      }))
   }
   constructor(){
     super();
@@ -21,7 +17,7 @@ class App extends React.Component {
     }
   }
   componentDidMount(){
-    this.getUserInfo().then((data) => {
+    github().then((data) => {
         console.log(data.bio)
         this.setState({
           info:data.bio,
