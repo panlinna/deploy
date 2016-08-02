@@ -24,7 +24,10 @@ class App extends React.Component {
   }
   render () {
     return(
+      <div>
       <div>{this.state.info.email}</div>
+      <div>{this.state.info.avatar_url}</div>
+      </div>
     )
   }
 }
