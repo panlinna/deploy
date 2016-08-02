@@ -25,8 +25,8 @@ class App extends React.Component {
   render () {
     return(
       <div>
-      <div>{this.state.info.email}</div>
-      <div>{this.state.info.avatar_url}</div>
+      {this.state.info.email}
+      <img src={this.state.info.avatar_url} />
       </div>
     )
   }
